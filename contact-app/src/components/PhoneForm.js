@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
 class PhoneForm extends Component{
-
+    input = React.createRef();
     state = {
         name: '',
         phone: '',
     }
+
+
 
     handleChange = (e) => {
         this.setState({
@@ -20,6 +22,7 @@ class PhoneForm extends Component{
             name: '',
             phone: '',
         });
+        this.input.current.focus();
     }
 
     render(){
@@ -30,6 +33,7 @@ class PhoneForm extends Component{
                     onChange={this.handleChange} 
                     value={this.state.name}
                     name='name'
+                    ref={this.input}
                 />
                 <input 
                     placeholder="Phone Number" 
