@@ -25,7 +25,16 @@ class App extends Component {
       }
 
     ],
+    keyword: '',
   }
+
+  handleChange = (e) => {
+    this.setState({
+      keyword: e.target.value,
+    });
+  }
+
+
 
   handleCreate = (data) => {
     const { information } = this.state;
@@ -65,8 +74,15 @@ class App extends Component {
     return (
       <div>
         <PhoneForm onCreate={this.handleCreate} />
+        <input
+          value={this.state.keyword}
+          onChange={this.handleChange}
+          placeholder='Search'
+        />
         <PhoneInfoList 
-          data={this.state.information} 
+          data={this.state.information.filter(
+            info => info.name.indexOf(this.state.keyword) > -1
+          )} 
           onRemove={this.handleRemove}
           onUpdate={this.handleUpdate}
         />
