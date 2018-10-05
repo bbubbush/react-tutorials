@@ -15,7 +15,6 @@ class PhoneInfo extends Component{
 
     handleToggleEdit = () => {
         const { info, onUpdate } = this.props;
-        console.log(onUpdate);
         if (this.state.editing) {
             onUpdate(info.id, {
                 name: this.state.name,

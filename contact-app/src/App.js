@@ -33,7 +33,7 @@ class App extends Component {
     const { information } = this.state;
 
     this.setState({
-      information: information.map(info => {
+      information: information.map(info => {``
         if (info.id === id) {
           return {
             id, ...data
