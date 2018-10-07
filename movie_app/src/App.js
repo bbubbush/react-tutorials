@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Movie from './Movie';
+import './App.css';
 
 class App extends Component {
   state = {}
@@ -10,7 +11,13 @@ class App extends Component {
 
   _renderMovies = () => {
     const movies = this.state.movies.map((movie) => {
-      return <Movie title={movie.title} poster={movie.medium_cover_image} key={movie.id} />
+      return <Movie 
+        title={movie.title_english}
+        poster={movie.medium_cover_image}
+        key={movie.id}
+        genres={movie.genres}
+        synopsis={movie.synopsis}
+      />
     })
     return movies
   }
@@ -34,7 +41,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className={this.state.movies ? "App" : "App--loading"}>
         {this.state.movies ? this._renderMovies() : 'Loading...'}
       </div> 
     );
