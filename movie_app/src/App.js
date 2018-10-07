@@ -5,37 +5,32 @@ class App extends Component {
   state = {}
 
   componentDidMount(){
-    setTimeout(() => {
-      console.log('setTimeout');
-      this.setState({
-        movies: [
-          {
-            title: "Life of pie",
-            poster: "https://upload.wikimedia.org/wikipedia/en/5/57/Life_of_Pi_2012_Poster.jpg"
-          },
-          {
-            title: "About time",
-            poster: "https://upload.wikimedia.org/wikipedia/en/7/7c/About_Time_%282013_film%29_Poster.jpg"
-          },
-          {
-            title: "Avengers",
-            poster: "https://cdn3.whatculture.com/images/2018/05/c2f68e7aacf19bc2-600x400.png"
-          },
-          {
-            title: 'matrix3',
-            poster: 'https://cdn3.whatculture.com/images/2018/05/c2f68e7aacf19bc2-600x400.png'
-          }
-        ]
-      });
-    }, 2000);
+    this._getMovies();
   }
 
   _renderMovies = () => {
-    const movies = this.state.movies.map((movie, index) => {
-      return <Movie title={movie.title} poster={movie.poster} key={index} />
+    const movies = this.state.movies.map((movie) => {
+      return <Movie title={movie.title} poster={movie.medium_cover_image} key={movie.id} />
     })
     return movies
   }
+
+  _getMovies = async () => {
+    const movies = await this._callApi();
+    this.setState({
+      movies
+    });
+  }
+
+  _callApi = () => {
+    return fetch('https://yts.ag/api/v2/list_movies.json?sort_by=rating')
+    .then(data => data.json())
+    .then(json => json.data.movies)
+    .catch(
+      e => console.log(e)
+    )
+  }
+
 
   render() {
     return (
