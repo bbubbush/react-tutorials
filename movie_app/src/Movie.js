@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Movie.css';
 import PropTypes from 'prop-types';
-import LE from'react-lines-ellipsis';
+import LinesEllipsis from'react-lines-ellipsis';
 
 class Movie extends Component {
     static propTypes = {
@@ -24,14 +24,13 @@ class Movie extends Component {
                         })}
                     </div>
                     <div className="Movie__Synopsis">
-                    <LE 
-                        text={this.props.synopsis}
-                        maxLine='3'
-                        ellipsis='...'
-                        trainRight
-                        baseOn='letters'
-                    />
-                        {this.props.synopsis}
+                        <LinesEllipsis 
+                            text={this.props.synopsis}
+                            maxLine='3'
+                            ellipsis='...'
+                            trimRight
+                            basedOn='letters'
+                        />
                     </div>
                 </div>
             </div>
