@@ -2,7 +2,7 @@
   "name": "movie_app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bbubbush.github.io/movie_app",
+  "homepage": "http://bbubbush.github.io/movie_app",
   "dependencies": {
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
@@ -15,7 +15,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build&&gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
